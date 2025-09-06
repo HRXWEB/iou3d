@@ -23,15 +23,19 @@
 iou3d/
 ├── iou3d.h                    # 头文件
 ├── iou3d.cpp                  # 实现文件
-├── test_iou3d.cpp             # 主测试套件
-├── rotation_test.cpp          # 旋转验证测试
 ├── CMakeLists.txt             # CMake主配置文件
 ├── cmake/                     # CMake配置文件
 │   └── iou3dConfig.cmake.in
+├── test/                      # 测试文件
+│   ├── test_iou3d.cpp         # 主测试套件
+│   ├── rotation_test.cpp      # 旋转验证测试
+│   └── vertex_order_test.cpp  # 顶点顺序测试
 ├── examples/                  # 示例代码
 │   ├── CMakeLists.txt
 │   ├── simple_example.cpp     # 简单使用示例
 │   └── advanced_example.cpp   # 高级功能示例
+├── docs/                      # 文档
+│   └── algorithm_explanation.md # 算法原理说明
 └── README.md                  # 说明文档
 ```
 
@@ -57,6 +61,7 @@ ctest
 # 单独运行特定测试
 ./test_iou3d           # 主测试套件
 ./rotation_test        # 旋转验证测试
+./vertex_order_test    # 顶点顺序测试
 
 # 运行示例（如果启用）
 cmake .. -DBUILD_EXAMPLES=ON
@@ -149,10 +154,23 @@ float iou_bev = calculateBEVIoU(box1, box2);
 - **多角度测试**：验证0°、45°、90°、135°、180°的旋转结果
 - **坐标系确认**：确保yaw角"从z轴绕向x轴为正向"的定义正确
 
+### 顶点顺序测试 (`vertex_order_test`)
+
+验证Sutherland-Hodgman算法的正确性：
+
+- **顶点顺序检测**：验证多边形顶点是否按逆时针排列
+- **算法有效性**：测试不同顶点顺序对裁剪算法的影响
+- **数学验证**：通过叉积计算验证顶点方向性
+
 ```bash
-# 运行旋转测试
+# 运行所有测试
 cd build
-./rotation_test
+make test
+
+# 或单独运行特定测试
+./test_iou3d           # 主测试套件
+./rotation_test        # 旋转验证测试
+./vertex_order_test    # 顶点顺序测试
 ```
 
 所有测试用例都通过了数学验证，确保实现的正确性。

@@ -15,6 +15,7 @@ test_iou3d
 simple_example
 advanced_example
 rotation_test
+vertex_order_test
 
 # CMake cache and generated files
 CMakeCache.txt

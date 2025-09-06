@@ -54,7 +54,7 @@ option(BUILD_TESTS "Build test executable" ON)
 
 if(BUILD_TESTS)
     # 创建主测试可执行文件
-    add_executable(test_iou3d test_iou3d.cpp)
+    add_executable(test_iou3d test/test_iou3d.cpp)
     
     # 链接到iou3d库
     target_link_libraries(test_iou3d iou3d)
@@ -65,16 +65,24 @@ if(BUILD_TESTS)
     endif()
     
     # 创建旋转测试可执行文件
-    add_executable(rotation_test rotation_test.cpp)
+    add_executable(rotation_test test/rotation_test.cpp)
     target_link_libraries(rotation_test iou3d)
     if(MATH_LIBRARY)
         target_link_libraries(rotation_test ${MATH_LIBRARY})
+    endif()
+    
+    # 创建顶点顺序测试可执行文件
+    add_executable(vertex_order_test test/vertex_order_test.cpp)
+    target_link_libraries(vertex_order_test iou3d)
+    if(MATH_LIBRARY)
+        target_link_libraries(vertex_order_test ${MATH_LIBRARY})
     endif()
     
     # 添加测试目标
     enable_testing()
     add_test(NAME iou3d_test COMMAND test_iou3d)
     add_test(NAME rotation_test COMMAND rotation_test)
+    add_test(NAME vertex_order_test COMMAND vertex_order_test)
     
     # 设置测试属性
     set_tests_properties(iou3d_test PROPERTIES
@@ -82,6 +90,9 @@ if(BUILD_TESTS)
     )
     set_tests_properties(rotation_test PROPERTIES
         PASS_REGULAR_EXPRESSION "✓ 旋转方向正确！"
+    )
+    set_tests_properties(vertex_order_test PROPERTIES
+        PASS_REGULAR_EXPRESSION "✓ 裁剪算法工作正常"
     )
 endif()
 
