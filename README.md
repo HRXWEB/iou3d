@@ -25,7 +25,6 @@ iou3d/
 ├── iou3d.cpp                  # 实现文件
 ├── test_iou3d.cpp             # 测试套件
 ├── CMakeLists.txt             # CMake主配置文件
-├── Makefile                   # 传统Makefile（保留兼容）
 ├── cmake/                     # CMake配置文件
 │   └── iou3dConfig.cmake.in
 ├── examples/                  # 示例代码
@@ -83,18 +82,6 @@ cmake .. -DBUILD_EXAMPLES=ON
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
 ```
 
-### 传统Makefile方式
-
-```bash
-# 编译
-make
-
-# 运行测试
-make test
-
-# 清理
-make clean
-```
 
 ### 在其他项目中使用
 
