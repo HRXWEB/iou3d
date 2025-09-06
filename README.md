@@ -4,9 +4,9 @@
 
 ## 坐标系定义
 
-- **x轴**：水平右方向（宽度）
+- **x轴**：水平右方向（长度）
 - **y轴**：垂直向下方向（高度）  
-- **z轴**：深度方向（长度）
+- **z轴**：深度方向（宽度）
 - **BEV视角**：xoz平面（从上往下看）
 - **yaw角**：从z轴绕向x轴为正向（绕y轴顺时针旋转）
 
@@ -115,12 +115,12 @@ using namespace nms;
 // 创建两个包围盒
 Box box1;
 box1.center_x = 0; box1.center_y = 0; box1.center_z = 0;
-box1.width = 2; box1.length = 4; box1.height = 3;
+box1.length = 4; box1.width = 2; box1.height = 3;
 box1.yaw = 0;
 
 Box box2;  
 box2.center_x = 1; box2.center_y = 0; box2.center_z = 0;
-box2.width = 2; box2.length = 4; box2.height = 3;
+box2.length = 4; box2.width = 2; box2.height = 3;
 box2.yaw = 0;
 
 // 计算IoU

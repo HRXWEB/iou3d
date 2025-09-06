@@ -8,16 +8,16 @@ using namespace nms;
 
 // 辅助函数：创建包围盒
 Box createBox(const std::string& name, float x, float y, float z, 
-              float w, float l, float h, float yaw = 0.0f) {
+              float l, float w, float h, float yaw = 0.0f) {
     Box box;
     box.class_name = name;
     box.class_id = 1;
     box.center_x = x;
     box.center_y = y;
     box.center_z = z;
-    box.width = w;
-    box.length = l;
-    box.height = h;
+    box.length = l;  // x轴尺度
+    box.width = w;   // z轴尺度
+    box.height = h;  // y轴尺度
     box.yaw = yaw;
     box.confidence = 1.0f;
     return box;
@@ -33,7 +33,7 @@ void calculateIoUMatrix(const std::vector<Box>& boxes) {
     for (size_t i = 0; i < n; ++i) {
         std::cout << "Box" << i << ": 中心(" << boxes[i].center_x << "," 
                   << boxes[i].center_y << "," << boxes[i].center_z 
-                  << ") 尺寸(" << boxes[i].width << "," << boxes[i].length 
+                  << ") 尺寸(" << boxes[i].length << "," << boxes[i].width 
                   << "," << boxes[i].height << ") yaw=" << boxes[i].yaw << std::endl;
     }
     

@@ -7,8 +7,8 @@ namespace nms {
 
 Polygon2D boxToBEVPolygon(const Box& box) {
     // 在BEV视角（xoz平面）中，计算旋转后的4个顶点
-    float half_width = box.width * 0.5f;   // x方向的一半
-    float half_length = box.length * 0.5f; // z方向的一半
+    float half_length = box.length * 0.5f; // x方向的一半
+    float half_width = box.width * 0.5f;   // z方向的一半
     
     float cos_yaw = std::cos(box.yaw);
     float sin_yaw = std::sin(box.yaw);
@@ -19,10 +19,10 @@ Polygon2D boxToBEVPolygon(const Box& box) {
     // 定义相对于中心的4个顶点（未旋转）
     // 逆时针方向：右前、右后、左后、左前
     float vertices[4][2] = {
-        {half_width, half_length},   // 右前
-        {-half_width, half_length},  // 左前  
-        {-half_width, -half_length}, // 左后
-        {half_width, -half_length}   // 右后
+        {half_length, half_width},   // 右前 (x=length/2, z=width/2)
+        {-half_length, half_width},  // 左前 (x=-length/2, z=width/2)
+        {-half_length, -half_width}, // 左后 (x=-length/2, z=-width/2)
+        {half_length, -half_width}   // 右后 (x=length/2, z=-width/2)
     };
     
     // 应用旋转并平移到中心位置

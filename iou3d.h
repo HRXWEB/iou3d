@@ -27,9 +27,9 @@ struct Box {
     float center_y;
     float center_z;
     // the x dimension of the box in camera coordinate
-    float width;
-    // the z dimension of the box in camera coordinate
     float length;
+    // the z dimension of the box in camera coordinate
+    float width;
     // the y dimension of the box in camera coordinate
     float height;
     // 绕y轴旋转的角度（从z轴绕向x轴为正向）
