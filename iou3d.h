@@ -12,8 +12,9 @@ namespace nms {
  * @brief 相机坐标系下的3D包围盒
  * 坐标系定义：
  * - x轴：水平右方向
- * - y轴：垂直向上方向（高度）
+ * - y轴：垂直向下方向（高度）
  * - z轴：深度方向（向前）
+ * - yaw角：从z轴绕向x轴为正向（绕y轴顺时针）
  * BEV视角：xoz平面（从上往下看）
  */
 struct Box {
@@ -31,7 +32,7 @@ struct Box {
     float length;
     // the y dimension of the box in camera coordinate
     float height;
-    // 绕着 y 轴逆向旋转的角度
+    // 绕y轴旋转的角度（从z轴绕向x轴为正向）
     float yaw;
     // the confidence of the box
     float confidence;

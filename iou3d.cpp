@@ -30,9 +30,9 @@ Polygon2D boxToBEVPolygon(const Box& box) {
         float local_x = vertices[i][0];
         float local_z = vertices[i][1];
         
-        // 绕y轴旋转
-        float rotated_x = local_x * cos_yaw - local_z * sin_yaw;
-        float rotated_z = local_x * sin_yaw + local_z * cos_yaw;
+        // 绕y轴旋转（从z轴绕向x轴为正向）
+        float rotated_x = local_x * cos_yaw + local_z * sin_yaw;
+        float rotated_z = -local_x * sin_yaw + local_z * cos_yaw;
         
         // 平移到世界坐标
         polygon.emplace_back(rotated_x + box.center_x, rotated_z + box.center_z);
