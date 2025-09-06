@@ -23,7 +23,8 @@
 iou3d/
 ├── iou3d.h                    # 头文件
 ├── iou3d.cpp                  # 实现文件
-├── test_iou3d.cpp             # 测试套件
+├── test_iou3d.cpp             # 主测试套件
+├── rotation_test.cpp          # 旋转验证测试
 ├── CMakeLists.txt             # CMake主配置文件
 ├── cmake/                     # CMake配置文件
 │   └── iou3dConfig.cmake.in
@@ -52,6 +53,10 @@ make
 make test
 # 或者
 ctest
+
+# 单独运行特定测试
+./test_iou3d           # 主测试套件
+./rotation_test        # 旋转验证测试
 
 # 运行示例（如果启用）
 cmake .. -DBUILD_EXAMPLES=ON
@@ -125,7 +130,9 @@ float iou_bev = calculateBEVIoU(box1, box2);
 
 ## 测试验证
 
-测试套件包含以下几种典型场景：
+### 主测试套件 (`test_iou3d`)
+
+包含以下几种典型场景：
 
 1. **完全重叠** - IoU = 1.0
 2. **完全不重叠** - IoU = 0.0  
@@ -133,5 +140,19 @@ float iou_bev = calculateBEVIoU(box1, box2);
 4. **BEV重叠但高度分离** - 3D IoU = 0, BEV IoU > 0
 5. **旋转包围盒** - 验证Sutherland-Hodgman算法
 6. **不同大小包围盒** - 验证包含关系
+
+### 旋转验证测试 (`rotation_test`)
+
+专门验证相机坐标系下的旋转计算：
+
+- **旋转方向验证**：测试90度旋转后的几何变换
+- **多角度测试**：验证0°、45°、90°、135°、180°的旋转结果
+- **坐标系确认**：确保yaw角"从z轴绕向x轴为正向"的定义正确
+
+```bash
+# 运行旋转测试
+cd build
+./rotation_test
+```
 
 所有测试用例都通过了数学验证，确保实现的正确性。

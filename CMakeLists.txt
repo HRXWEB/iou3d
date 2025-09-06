@@ -53,7 +53,7 @@ endif()
 option(BUILD_TESTS "Build test executable" ON)
 
 if(BUILD_TESTS)
-    # 创建测试可执行文件
+    # 创建主测试可执行文件
     add_executable(test_iou3d test_iou3d.cpp)
     
     # 链接到iou3d库
@@ -64,13 +64,24 @@ if(BUILD_TESTS)
         target_link_libraries(test_iou3d ${MATH_LIBRARY})
     endif()
     
+    # 创建旋转测试可执行文件
+    add_executable(rotation_test rotation_test.cpp)
+    target_link_libraries(rotation_test iou3d)
+    if(MATH_LIBRARY)
+        target_link_libraries(rotation_test ${MATH_LIBRARY})
+    endif()
+    
     # 添加测试目标
     enable_testing()
     add_test(NAME iou3d_test COMMAND test_iou3d)
+    add_test(NAME rotation_test COMMAND rotation_test)
     
     # 设置测试属性
     set_tests_properties(iou3d_test PROPERTIES
         PASS_REGULAR_EXPRESSION "🎉 所有测试用例通过！"
+    )
+    set_tests_properties(rotation_test PROPERTIES
+        PASS_REGULAR_EXPRESSION "✓ 旋转方向正确！"
     )
 endif()
 
