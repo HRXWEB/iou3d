@@ -1,0 +1,115 @@
+# CMake build files
+build/
+build-*/
+cmake-build-*/
+
+# Make build files
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+
+# Executables
+test_iou3d
+simple_example
+advanced_example
+
+# CMake cache and generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+install_manifest.txt
+*.cmake
+!CMakeLists.txt
+!cmake/*.cmake.in
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows specific files
+*.exe
+*.pdb
+*.ilk
+*.obj
+*.lib
+*.exp
+
+# Linux specific files
+core
+*.core
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Package managers
+conan.lock
+vcpkg_installed/
+
+# Coverage reports
+*.gcov
+*.gcda
+*.gcno
+coverage/
+*.info
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Valgrind files
+*.valgrind
+
+# Profiling files
+gmon.out
+*.prof
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Test outputs
+Testing/
+
+# Documentation builds
+docs/_build/
+docs/html/
+docs/latex/
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.tar.bz2
+*.7z
+
+# Editor configs (keep only project-wide)
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/c_cpp_properties.json
+
+# Keep these
+!.vscode/extensions.json
+!.gitignore
+!README.md

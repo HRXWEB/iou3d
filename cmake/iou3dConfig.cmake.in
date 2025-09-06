@@ -1,0 +1,17 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# 找到数学库依赖（如果需要）
+find_dependency(Threads)
+
+# 包含目标文件
+if(NOT TARGET iou3d::iou3d)
+    include("${CMAKE_CURRENT_LIST_DIR}/iou3dTargets.cmake")
+endif()
+
+# 设置找到的标志
+set(iou3d_FOUND TRUE)
+
+# 检查所需组件
+check_required_components(iou3d)
